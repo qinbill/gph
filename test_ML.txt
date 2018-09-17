@@ -1,0 +1,4 @@
+nohup: ignoring input and appending output to `nohup.out'
+Alg: MIHRING Allor: Rgreedy #dim: 128 Tau: 0 Ext: 0 qrytime 0.013 idxtime 0 #data 1000000 #qry 10000 K: 1000000 #avgrst 0.00 #avglkup 1.00 #avgcnd 0.00 #avgdup 0.00
+Alg: MIHRING Allor: Rgreedy #dim: 128 Tau: 1 Ext: 0 qrytime 0.022 idxtime 0 #data 1000000 #qry 10000 K: 1000000 #avgrst 0.00 #avglkup 18.05 #avgcnd 0.00 #avgdup 0.00
+Alg: MIHRING Allor: Rgreedy #dim: 128 Tau: 2 Ext: 0 qrytime 2558.667 idxtime 0 #data 1000000 #qry 10000 K: 1000000 #avgrst 0.00 #avglkup 183.46 #avgcnd 0.00 #avgdup 0.00

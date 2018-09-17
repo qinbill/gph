@@ -1,0 +1,2 @@
+Alg: MIHRING Allor: Rrobin #dim: 128 Tau: 4 Ext: 0 qrytime 2.290 idxtime 2 #data 1000000 #qry 100 K: 1000000 #avgrst 3702.12 #avglkup 5.45 #avgcnd 905575.64 #avgdup 1606735.38
+Alg: MIHRING Allor: Rdp #dim: 128 Tau: 4 Ext: 0 qrytime 0.359 idxtime 2 #data 1000000 #qry 100 K: 1000000 #avgrst 3702.12 #avglkup 104.60 #avgcnd 112740.77 #avgdup 127143.59
