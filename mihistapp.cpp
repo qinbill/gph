@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
 {
 
   struct timeval begin, end;
+  struct timeval begin_hist, end_hist;
   char c;    
   int tau = 0; 
   char *dataFile = NULL;
@@ -79,6 +80,8 @@ int main(int argc, char* argv[])
   int taugap = 1;
   histgram *Hist = NULL;
 
+  int datastart = 0;
+  int dataend = 0;
   alpha = 0.0;
 
   // Prefix of regressor file
@@ -125,10 +128,10 @@ int main(int argc, char* argv[])
         print_usage();
         break;
       case 'r':
- 	regfile = optarg;	
+ 	datastart = atoi(optarg);	
 	break;
       case 'l':
-	alpha = atof(optarg);
+	dataend = atoi(optarg);
 	break;
       case '?':
         if ( optopt == 't' || optopt == 'd' || optopt == 'D' || optopt == 'l' || optopt == 'q' || optopt == 't' )
@@ -168,7 +171,7 @@ int main(int argc, char* argv[])
   }
 
   uint32_t B = indata->mDim;
-  NQ= min((uint32_t)NQ, (uint32_t)indata->mNumData);
+  NQ= min((uint32_t)N, (uint32_t)indata->mNumData);
   UINT32 *counter = new UINT32[(B+1)*NQ];
 
   mihasher* MIH = NULL;
@@ -190,7 +193,7 @@ int main(int argc, char* argv[])
     // Do the him indexing. 
     MIH = new mihasher(B, M);
     //if(regfile == NULL)
-    	//MIH->populate(indata->mData, N, indata->mDataBytes);
+    	MIH->populate(indata->mData, N, indata->mDataBytes);
     stats = (qstat*) new qstat[NQ];
     //results = new uint32_t[(K)*NQ];
     numres = new uint32_t[(indata->mDim+1)*NQ];
@@ -241,6 +244,7 @@ int main(int argc, char* argv[])
 
     for (int ee = 0; ee <= ext; ee++) {
       for (int t = taustart; t <=tau; t +=taugap) {
+        float histtime = 0.0;
 	gettimeofday(&begin, NULL);
 	// Perform the query processing.
 	//fprintf(stderr, "Process %d error\n", t);
@@ -255,14 +259,19 @@ int main(int argc, char* argv[])
 	
 	uint8_t* codes = indata->mData;
         // insert the first data
- 	MIH->populate_one(indata->mData, 0, N, indata->mDataBytes, true); 
+ 	//MIH->populate_one(indata->mData, 0, N, indata->mDataBytes, true); 
 	// insert histogram
+        gettimeofday(&begin_hist, NULL);
 	split(chunks, codes, M, MIH->mplus, MIH->b);
 	for(int k=0; k<M; k++) {
 	    Hist[k].insert(chunks[k], 1);
 	}
+        gettimeofday(&end_hist, NULL);
+	float hist_subtime = end_hist.tv_sec - begin_hist.tv_sec + (end_hist.tv_usec - begin_hist.tv_usec) * 1.0 / CLOCKS_PER_SEC;
+        histtime += hist_subtime;
+
 	for (int i=1; i<N; i++) {
-	  if(i > 1000) break;
+	  //if(i > 100000) break;
 	  // search	
 	  split(chunks, indata->mData + i * indata->mDataBytes, M, MIH->mplus, MIH->b);      
 
@@ -270,17 +279,22 @@ int main(int argc, char* argv[])
 	  // if (ext == 0) 
 	  //   MIH->rangequerywithallo(results, pstats, inquery->mData + i * inquery->mDataBytes, chunks, slots, t);
 	  // else 
-	  MIH->rangequerywithalloandext(results, pstats, indata->mData + i * indata->mDataBytes, chunks, slots, t, ee);
+	  MIH->rangequerywithalloandext(results, pstats, indata->mData + i * indata->mDataBytes, chunks, slots, t, ee, i);
 	  // insert it into MIH
-          MIH->populate_one(indata->mData, (uint32_t)i, N, indata->mDataBytes, false);
+          //MIH->populate_one(indata->mData, (uint32_t)i, N, indata->mDataBytes, false);
 	  // insert it into histogram
+          gettimeofday(&begin_hist, NULL);
 	  for(int k=0; k<M; k++){
 	  	Hist[k].insert(chunks[k], 1);
 	  }
+          gettimeofday(&end_hist, NULL);
+	  float hist_subtime = end_hist.tv_sec - begin_hist.tv_sec + (end_hist.tv_usec - begin_hist.tv_usec) * 1.0 / CLOCKS_PER_SEC;
+          histtime += hist_subtime;
+
 
 	  totalnumres += pstats->numres;
-	  totalookups += pstats->numlookups;
-	  totaldup += pstats->numdups;
+	  //totalookups += pstats->numlookups;
+	  //totaldup += pstats->numdups;
 	  totalcand += pstats->numcand;
 	  if (printcand) {
  	    fprintf(stdout, "INDIV CAND Alg: MIHRING Allor: %s #dim: %lld Tau: %d Ext: %d #Rst %d #Lkup %d #Cnd %d #Dup %d\n",
@@ -292,7 +306,7 @@ int main(int argc, char* argv[])
 	gettimeofday(&end, NULL);       
 	float querytime = end.tv_sec - begin.tv_sec + (end.tv_usec - begin.tv_usec) * 1.0 / CLOCKS_PER_SEC;
 	// fprintf(stderr, "Alg: MIHRING #dim: %lld Tau: %d qrytime %.3f idxtime %.f #data %lld #qry %d K: %d #rst %lld #lkup %lld #cnd %lld #dup %lld\n", indata->mDim, t, querytime, indextime, N, NQ, K, totalnumres, totalookups, totalcand, totaldup);
-	fprintf(stderr, "Alg: MIHRING Allor: %s #dim: %lld Tau: %d Ext: %d qrytime %.3f idxtime %.f #data %lld #qry %d K: %d #avgrst %.2f #avglkup %.2f #avgcnd %.2f #avgdup %.2f\n", alloName[al], indata->mDim, t, ee, querytime, indextime, N, NQ, K, totalnumres/(NQ*1.0), totalookups/(NQ*1.0), totalcand/(NQ*1.0), totaldup/(NQ*1.0));
+	fprintf(stderr, "Alg: MIHRING Allor: %s #dim: %lld Tau: %d Ext: %d qrytime %.3f histtime %.3f idxtime %.f #data %lld #qry %d K: %d #avgrst %.2f #avglkup %.2f #avgcnd %.2f #avgdup %.2f\n", alloName[al], indata->mDim, t, ee, querytime, histtime, indextime, N, NQ, K, totalnumres/(NQ*1.0), totalookups/(NQ*1.0), totalcand/(NQ*1.0), totaldup/(NQ*1.0));
       }
     }
   }

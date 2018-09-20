@@ -93,6 +93,7 @@ class mihasher {
 
     void rangequerywithallo(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau);
     void rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext);
+    void rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext, int _id);
 
     void greedyallocator(int32_t *allo, uint64_t* chunks, int tau);
 };

@@ -483,6 +483,113 @@ void mihasher::rangequerywithallo(UINT32 *results, qstat *stats, UINT8 *query, u
   stats->numres = nr;
 }
 
+void mihasher::rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext, int _id)
+{
+  
+  //  UINT32 n = 0; 		// number of results so far obtained (up to a distance of s per chunk)
+  UINT32 nc = 0;       		// number of candidates tested with full codes (not counting duplicates)
+  UINT32 nd = 0;              	// counting everything retrieved (duplicates are counted multiple times)
+  UINT32 nl = 0;	       	// number of lookups (and xors)
+  UINT32 nr = 0;                // number of results so far obtained (up to a distance of s per chunk)
+
+  UINT32 index;
+  int hammd;
+  clock_t start, end;
+  start = clock();
+  
+  bytecounter->erase(N);
+  //bytecounter->erase();
+  
+  int s;			// the growing search radius per substringo
+  int curb = b;	        	// current b: for the first mplus substrings it is b, for the rest it is (b-1)
+  //  int t = tau;
+  
+  for (int k = 0; k < m; k ++) {
+    if (slots[k]<0) continue;
+    
+    if (k < mplus)
+      curb = b;
+    else
+      curb = b-1;
+    
+    //uint64_t chunksk = chunks[k];
+    for (s = 0; s <= slots[k]; s++) {
+      if (k < mplus)
+        curb = b;
+      else
+        curb = b-1;
+      
+      uint64_t chunksk = chunks[k];
+      nl += xornum[s+1] - xornum[s];	// number of bit-strings with s number of 1s
+      
+      uint64_t bitstr = 0; 	       	// the bit-string with s number of 1s
+      for (int i=0; i<s; i++)
+        power[i] = i;			// power[i] stores the location of the i'th 1
+      power[s] = curb+1;	       	// used for stopping criterion (location of (s+1)th 1)
+      
+      int bit = s-1;			// bit determines the 1 that should be moving to the left
+      // we start from the left-most 1, and move it to the left until it touches another one
+      
+      while (true) {			// the loop for changing bitstr
+        if (bit != -1) {
+          bitstr ^= (power[bit] == bit) ? (uint64_t)1 << power[bit] : (uint64_t)3 << (power[bit]-1);
+          power[bit]++;
+          bit--;
+        } else { // bit == -1
+          /* the binary code bitstr is available for processing */
+#ifdef USEDENSE
+          int size = 0;
+          uint64_t *arr;
+          arr = DH[k].query(chunksk ^ bitstr, &size); // lookup
+#else
+          int size = 0;
+          uint32_t *arr;
+          arr = H[k].query(chunksk ^ bitstr, &size); // lookup
+#endif          
+          // arr = H[k].query(chunksk ^ bitstr, &size); // lookup
+          if (size) {			// the corresponding bucket is not empty
+            //printf("SIZE : %d, %d\n", size, _id);
+            nd += size;
+            for (int c = 0; c < size; c++) {
+              index = arr[c];
+              if(index >= _id) break;
+	      if (bytecounter->checkcount(index, slots[k] - s, ext)) {
+		hammd = match(codes + (uint64_t)index*(B_over_8), query, B_over_8);
+                nc++;
+                if (hammd <= tau) {
+                  //results[nr++] = index + 1;
+                  nr++;
+                }		
+	      }
+              // if (!counter->get(index)) { // if it is not a duplicate
+              //   counter->set(index);
+              // }
+            }
+          }
+          /* end of processing */
+          
+          while (++bit < s && power[bit] == power[bit+1]-1) {
+            bitstr ^= (uint64_t)1 << (power[bit]-1);
+            power[bit] = bit;
+          }
+          if (bit == s)
+            break;
+        }
+      }
+    }
+  }
+  end = clock();
+  
+  // printf("%d\n", nr);
+  
+  stats->ticks = end-start;
+  stats->numcand = nc;
+  stats->numdups = nd;
+  stats->numlookups = nl;  
+  stats->numres = nr;
+}
+
+
 
 
 
@@ -738,13 +845,11 @@ mihasher::mihasher(int _B, int _m)
   
 #ifdef USEDENSE
   DH = new DenseHashtable[m];
-  printf("Init DH\n");
   for (int i=0; i<mplus; i++)
     DH[i].init(b);
   for (int i=mplus; i<m; i++)
     DH[i].init(b-1);  
 #else
-  printf("Init H\n");
   H = new SparseHashtable[m];
   // H[i].init might fail
   for (int i=0; i<mplus; i++)
@@ -794,8 +899,8 @@ void mihasher::populate(UINT8 *_codes, UINT32 _N, int dim1codes)
       DH[k].insertcount(entry);
     }
     if (i % (int)ceil(N/1000) == 0) {
-      printf("%.2f%%\r", (double)i/N * 100);
-      fflush(stdout);
+      //printf("%.2f%%\r", (double)i/N * 100);
+      //fflush(stdout);
     }
   }
 
@@ -818,8 +923,8 @@ void mihasher::populate(UINT8 *_codes, UINT32 _N, int dim1codes)
     }
     
     if (i % (int)ceil(N/1000) == 0) {
-      printf("%.2f%%\r", (double)i/N * 100);
-      fflush(stdout);
+      //printf("%.2f%%\r", (double)i/N * 100);
+      //fflush(stdout);
     }
   }
 
