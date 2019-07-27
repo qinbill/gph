@@ -9,7 +9,7 @@
 // Add dlib library
 #include <dlib/svm.h>
 
-#define MaxPartition 100
+#define MaxPartition 16
 #define MaxTau 65
 #define MaxQueries 20000
 
@@ -17,8 +17,7 @@ using namespace dlib;
 
 typedef matrix<double> feature_type;
 
-//typedef radial_basis_kernel<feature_type> kernel_type;
-typedef linear_kernel<feature_type> kernel_type;
+typedef radial_basis_kernel<feature_type> kernel_type;
 
 // Combinations of bits
 template<class iterator_type>
@@ -78,8 +77,6 @@ public:
 	std::vector<feature_type> ft[MaxQueries];
 	int M;
 
-	// temp records to store
-	double temp[MaxQueries][MaxPartition][MaxTau];
 
 	/* maxtau:	the maximum threshold
 	 * prefixfile:	the prefix file of regressors
@@ -87,7 +84,7 @@ public:
 	 * M:		the number of chunks
 	 */
 	mlregressor(int maxtau, char* prefixfile, int d, int M, int bit_num) {
-		this->numreg = std::min(maxtau + 1, d);
+		this->numreg = maxtau + 1;
 		/*
 		// Malloc the decision_function
 		df = new decision_function<kernel_type>*[M];
@@ -123,11 +120,6 @@ public:
 			//this->ft[i](this->D, 1);
 		}
 		*/
-		// Initialize temp
-		for(int i = 0; i < MaxQueries; i++)
-		 for(int j = 0 ; j < MaxPartition; j++)
-		  for(int z = 0; z < MaxTau; z++)
-			temp[i][j][z] = -1.0;
 	}
 
 	~mlregressor() {
@@ -139,8 +131,7 @@ public:
 	void transfer_to_high_dimen(std::vector<uint8_t>& feature_vec, int pid, int queryid);
 	void gen_feature_vec(uint64_t chunk, int pid, int queryid);
 	void gen_feature_vecs(uint64_t* chunks, int queryid);
-	double search(int script, int error, int queryid);
-	void fillallpredicts(int NQ, int M, int maxTau);
+	int64_t search(int script, int error, int queryid);
 
 };
 

@@ -5,15 +5,6 @@
 
 #include "mlregressor.h"
 
-
-void assign_combine_taus(int32_t N);
-
-// Calcualte the value of selecting K from N
-int cal_combination(int n, int k);
-
-void assign_combine_taus(int N);
-
-
 typedef uint64_t(*allocator_Func)(histgram *, int, int32_t*, uint64_t*, int);
 
 /* Use greedy allocation algorithm to allocate */

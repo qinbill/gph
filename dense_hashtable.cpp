@@ -51,8 +51,8 @@ void DenseHashtable::insert(uint64_t index, uint64_t padeddata) {
 }
 
 void DenseHashtable::insertfinish() {
-  //delete [] indexlen;
-  //indexlen = NULL;
+  delete [] indexlen;
+  indexlen = NULL;
 }
 
 uint64_t* DenseHashtable::query(uint64_t index, int *sizep) {

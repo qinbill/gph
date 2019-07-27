@@ -320,7 +320,7 @@ int main(int argc, char* argv[])
     printf(" ]\n");
   }
 
-  for (int err = 0; err < BLOCKMAXERR; err+=1) {
+  for (int err = 0; err < BLOCKMAXERR; err+=4) {
     int64_t totalGrountCost = 0;
     int64_t totalEstiCost = 0;
     int64_t totalPartCost = 0;
@@ -402,4 +402,5 @@ int main(int argc, char* argv[])
   delete indata;
   delete querydata;
   return 0;
+    print(mnist_train.shape, mnist_test.shape)
 }

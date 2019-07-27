@@ -30,8 +30,8 @@ public:
   }
   
   ~ByteCounter() {
-    //if (arr)
-      //delete[] arr;
+    if (arr)
+      delete[] arr;
   }
 
   inline int addcount(uint64_t index, int count) {

@@ -1,0 +1,282 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ARRAY32_H__	array32.h	7;"	d
+ARRAY_RESIZE_ADD_FACTOR	array32.cpp	/^double Array32::ARRAY_RESIZE_ADD_FACTOR = 4;  \/\/ minimum is 1$/;"	m	class:Array32	file:
+ARRAY_RESIZE_ADD_FACTOR	array32.h	/^    static double ARRAY_RESIZE_ADD_FACTOR;$/;"	m	class:Array32
+ARRAY_RESIZE_FACTOR	array32.cpp	/^double Array32::ARRAY_RESIZE_FACTOR = 1.1;    \/\/ minimum is 1.0$/;"	m	class:Array32	file:
+ARRAY_RESIZE_FACTOR	array32.h	/^    static double ARRAY_RESIZE_FACTOR;$/;"	m	class:Array32
+Array32	array32.cpp	/^Array32::Array32 () {$/;"	f	class:Array32
+Array32	array32.h	/^class Array32 {$/;"	c
+B	mihasher.h	/^    int B;			\/\/ Bits per code$/;"	m	class:mihasher
+BITOPTS_H__	bitops.h	2;"	d
+BLOCKMAXERR	parthist.cpp	/^const int BLOCKMAXERR = 32;$/;"	v
+BLOCKMAXERR	truehist.cpp	/^const int BLOCKMAXERR = 32;$/;"	v
+BUCKET_GROUP_H__	bucket_group.h	2;"	d
+B_over_8	mihasher.h	/^    int B_over_8;$/;"	m	class:mihasher
+BucketGroup	bucket_group.cpp	/^BucketGroup::BucketGroup() {$/;"	f	class:BucketGroup
+BucketGroup	bucket_group.h	/^class BucketGroup {$/;"	c
+ByteCounter	bytecounter.h	/^  ByteCounter() {$/;"	f	class:ByteCounter
+ByteCounter	bytecounter.h	/^  ByteCounter(uint64_t _bits) {$/;"	f	class:ByteCounter
+ByteCounter	bytecounter.h	/^class ByteCounter {$/;"	c
+CC	Makefile	/^CC	= g++$/;"	m
+CCFLAGS	Makefile	/^CCFLAGS = ${OPT} -Wall -Wno-deprecated -pg -ggdb -D${PROD} ${DEFINES} -DVERSION=${VERSION}  -std=c++11 -O3 -I..$/;"	m
+D	mihasher.h	/^    int D;			\/\/ Maximum hamming search radius (we use B\/2 by default)$/;"	m	class:mihasher
+D	mlregressor.h	/^	int D;$/;"	m	class:mlregressor
+DEFINES	Makefile	/^DEFINES := -DUSEDENSE -DREDUCTION$/;"	m
+DENSEHTABLE_H__	dense_hashtable.h	2;"	d
+DH	mihasher.h	/^    DenseHashtable *DH;		\/\/ Array of m hashtables;$/;"	m	class:mihasher
+DP_optimal_allocator	histallo.cpp	/^uint64_t DP_optimal_allocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+DenseHashtable	dense_hashtable.cpp	/^DenseHashtable::DenseHashtable() {$/;"	f	class:DenseHashtable
+DenseHashtable	dense_hashtable.h	/^class DenseHashtable {$/;"	c
+H	mihasher.h	/^    SparseHashtable *H;		\/\/ Array of m hashtables;$/;"	m	class:mihasher
+HEADERS	Makefile	/^HEADERS := array32.h bitarray.h bitops.h bucket_group.h linscan.h memusage.h mihasher.h sparse_hashtable.h types.h hmdata.h histgram.h dense_hashtable.h histallo.h mlregressor.h$/;"	m
+HISTGRAM_H__	histgram.h	2;"	d
+Hist	histalloapp.cpp	/^histgram *Hist;$/;"	v
+Hist	mihasher.h	/^    histgram *Hist;		\/\/ Array of m hashtables;$/;"	m	class:mihasher
+HmData	hmdata.cpp	/^HmData::HmData(const char *filename) {$/;"	f	class:HmData
+HmData	hmdata.h	/^  HmData() {$/;"	f	class:HmData
+HmData	hmdata.h	/^class HmData {$/;"	c
+INFINIT	parthist.cpp	/^const int INFINIT=10000000000;$/;"	v
+INFINIT	truehist.cpp	/^const int INFINIT=10000000000;$/;"	v
+K	mihasher.h	/^    int K;			\/\/ Maximum results to return$/;"	m	class:mihasher
+LDFLAGS	Makefile	/^LDFLAGS = ${OPT} -ggdb  ${LIBS} -pg -std=c++11 $/;"	m
+LIBS	Makefile	/^LIBS    = -lcrypto$/;"	m
+LoadFromFile	histgram.cpp	/^void histgram::LoadFromFile(const char *filename) {$/;"	f	class:histgram
+M	mlregressor.h	/^	int M;$/;"	m	class:mlregressor
+MAXERR	parthist.cpp	/^const int MAXERR = 32;$/;"	v
+MAXERR	truehist.cpp	/^const int MAXERR = 32;$/;"	v
+MAX_B	dense_hashtable.cpp	/^const int DenseHashtable::MAX_B = 32;$/;"	m	class:DenseHashtable	file:
+MAX_B	dense_hashtable.h	/^    static const int MAX_B;	\/\/ Maximum bits per key before folding the table	$/;"	m	class:DenseHashtable
+MAX_B	sparse_hashtable.cpp	/^const int SparseHashtable::MAX_B = 37;$/;"	m	class:SparseHashtable	file:
+MAX_B	sparse_hashtable.h	/^    static const int MAX_B;	\/\/ Maximum bits per key before folding the table	$/;"	m	class:SparseHashtable
+MAX_BUCKET	histgram.cpp	/^const int histgram::MAX_BUCKET = 20;$/;"	m	class:histgram	file:
+MAX_BUCKET	histgram.h	/^  static const int MAX_BUCKET;$/;"	m	class:histgram
+MAX_COUNT	histgram.cpp	/^const int histgram::MAX_COUNT = 1024*1024*128;$/;"	m	class:histgram	file:
+MAX_COUNT	histgram.h	/^  static const int MAX_COUNT;$/;"	m	class:histgram
+MAX_ERROR	histgram.cpp	/^const int histgram::MAX_ERROR = 10;$/;"	m	class:histgram	file:
+MAX_ERROR	histgram.h	/^  static const int MAX_ERROR;$/;"	m	class:histgram
+MEMUSAGE_H__	memusage.h	2;"	d
+MLREGRESSOR_H__	mlregressor.h	2;"	d
+MaxPartition	mlregressor.h	12;"	d
+MaxQueries	mlregressor.h	14;"	d
+MaxTau	mlregressor.h	13;"	d
+N	mihasher.h	/^    uint64_t N;			\/\/ Number of codes$/;"	m	class:mihasher
+OBJS	Makefile	/^OBJS    := ${SRCS:.cpp=.o}$/;"	m
+OPT	Makefile	/^OPT     := -O3$/;"	m
+PROD	Makefile	/^PROD 	:= DEBUG$/;"	m
+RandProject	hmdata.cpp	/^HmData* HmData::RandProject(int dim, int *projector) {$/;"	f	class:HmData
+Reduced_DP_optimal_allocator	histallo.cpp	/^uint64_t Reduced_DP_optimal_allocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+Reduced_DP_optimal_allocator	parthist.cpp	/^int64_t Reduced_DP_optimal_allocator(int32_t *allo, int64_t** Hist, int tau, int MM) {$/;"	f
+Reduced_DP_optimal_allocator	truehist.cpp	/^int64_t Reduced_DP_optimal_allocator(int32_t *allo, int64_t** Hist, int tau, int MM) {$/;"	f
+Reduced_dpml_allocator	histallo.cpp	/^uint64_t Reduced_dpml_allocator(histgram *Hist, int m, int32_t *allo, uint64_t *chunk, int tau, mlregressor* mlr, int queryid)$/;"	f
+SPHASHTABLE_H__	sparse_hashtable.h	2;"	d
+SRCS	Makefile	/^SRCS    := array32.cpp bucket_group.cpp linscan.cpp mihasher.cpp sparse_hashtable.cpp hmdata.cpp mihapp.cpp histgram.cpp dense_hashtable.cpp histgenapp.cpp histalloapp.cpp histdump.cpp parthist.cpp histallo.cpp mihistapp.cpp truehist.cpp dataproj.cpp mlregressor.cpp$/;"	m
+SparseHashtable	sparse_hashtable.cpp	/^SparseHashtable::SparseHashtable() {$/;"	f	class:SparseHashtable
+SparseHashtable	sparse_hashtable.h	/^class SparseHashtable {$/;"	c
+TARGETS	Makefile	/^TARGETS := mihapp histgenapp histalloapp histdump parthist mihistapp truehist dataproj dimshuff$/;"	m
+TESTERS	Makefile	/^TESTERS := $/;"	m
+TESTFLAGS	Makefile	/^TESTFLAGS = -DTESTER_MAIN -DWORD32BITS$/;"	m
+TYPES_H__	types.h	4;"	d
+UINT16	types.h	/^typedef unsigned short UINT16;$/;"	t
+UINT32	types.h	/^typedef unsigned int UINT32;$/;"	t
+UINT32_1	types.h	19;"	d
+UINT64	types.h	/^typedef unsigned long UINT64;$/;"	t
+UINT8	types.h	/^typedef unsigned char UINT8;$/;"	t
+VERSION	Makefile	/^VERSION := \\"0.0.1.0_${PROD}\\"$/;"	m
+WriteToFile	histgram.cpp	/^void histgram::WriteToFile(const char *filename) {$/;"	f	class:histgram
+WriteToFile	hmdata.cpp	/^void HmData::WriteToFile(const char* filename) {$/;"	f	class:HmData
+__BITARRAY_H	bitarray.h	2;"	d
+__BYTECOUNTER_H	bytecounter.h	2;"	d
+__HISTALLO_H__	histallo.h	2;"	d
+__HMDATA_H__	hmdata.h	2;"	d
+__MIHASHER_H	mihasher.h	2;"	d
+addcount	bytecounter.h	/^  inline int addcount(uint64_t index, int count) {$/;"	f	class:ByteCounter
+allocator_Func	histallo.h	/^typedef uint64_t(*allocator_Func)(histgram *, int, int32_t*, uint64_t*, int);$/;"	t
+arr	array32.h	/^    UINT32 *arr;$/;"	m	class:Array32
+arr	bitarray.h	/^    UINT32 *arr;$/;"	m	class:bitarray
+arr	bytecounter.h	/^  UINT8 *arr;$/;"	m	class:ByteCounter
+b	dense_hashtable.h	/^    int b;			\/\/ Bits per index$/;"	m	class:DenseHashtable
+b	histgram.h	/^  int b;$/;"	m	class:histgram
+b	mihasher.h	/^    int b;			\/\/ Bits per chunk (must be less than 64)$/;"	m	class:mihasher
+b	sparse_hashtable.h	/^    int b;			\/\/ Bits per index$/;"	m	class:SparseHashtable
+batchquery	mihasher.cpp	/^void mihasher::batchquery(UINT32 *results, UINT32 *numres, qstat *stats, UINT8 *queries, UINT32 numq, int dim1queries){$/;"	f	class:mihasher
+batchrangequery	mihasher.cpp	/^UINT32 mihasher::batchrangequery(UINT32 *results, qstat *stats, UINT8 *queries, UINT32 numq, int dim1queries, int tau, UINT8 *origqueries, UINT8 *origcodes, int origdimbytes)$/;"	f	class:mihasher
+bit_num	mlregressor.h	/^	int bit_num;$/;"	m	class:mlregressor
+bitarray	bitarray.h	/^    bitarray()	{$/;"	f	class:bitarray
+bitarray	bitarray.h	/^    bitarray(uint64_t _bits) {$/;"	f	class:bitarray
+bitarray	bitarray.h	/^class bitarray {$/;"	c
+bucketbits	histgram.h	/^  uint64_t bucketbits;$/;"	m	class:histgram
+bucketsize	histgram.h	/^  uint64_t bucketsize;$/;"	m	class:histgram
+bytecounter	mihasher.h	/^    ByteCounter *bytecounter;   \/\/ byte counter for candidate counting. $/;"	m	class:mihasher
+cal_combination	mlregressor.cpp	/^int mlregressor::cal_combination(int n, int k)$/;"	f	class:mlregressor
+capacity	array32.cpp	/^UINT32 Array32::capacity () {$/;"	f	class:Array32
+checkcount	bytecounter.h	/^  inline bool checkcount(uint64_t index, int count, int ext) {$/;"	f	class:ByteCounter
+choose	bitops.h	/^inline uint64_t choose(int n, int r) {$/;"	f
+cleanup	array32.cpp	/^void Array32::cleanup () {$/;"	f	class:Array32
+codes	mihasher.h	/^    UINT8 *codes;		\/\/ Table of original full-length codes$/;"	m	class:mihasher
+combination_generator	mlregressor.h	/^    combination_generator(iterator_type first_, iterator_type last_, unsigned r_) : first(first_), last(last_) , r(r_)$/;"	f	class:combination_generator
+combination_generator	mlregressor.h	/^class combination_generator {$/;"	c
+counter	mihasher.h	/^    bitarray *counter;		\/\/ Counter for eliminating duplicate results$/;"	m	class:mihasher
+d	mihasher.h	/^    int d;			\/\/ Maximum hamming search radius per substring$/;"	m	class:mihasher
+d	mlregressor.h	/^	int d;$/;"	m	class:mlregressor
+data	array32.cpp	/^UINT32* Array32::data() {$/;"	f	class:Array32
+df	mlregressor.h	/^	decision_function<kernel_type> df[MaxPartition][MaxTau];$/;"	m	class:mlregressor
+element_type	mlregressor.h	/^    typedef typename std::iterator_traits<iterator_type>::value_type element_type;$/;"	t	class:combination_generator
+empty	bucket_group.h	/^    UINT32 empty;$/;"	m	class:BucketGroup
+erase	bitarray.h	/^    inline void erase() {$/;"	f	class:bitarray
+erase	bitarray.h	/^    inline void erase(uint64_t _bits) {$/;"	f	class:bitarray
+erase	bytecounter.h	/^  inline void erase() {$/;"	f	class:ByteCounter
+erase	bytecounter.h	/^  inline void erase(uint64_t _bytes) {$/;"	f	class:ByteCounter
+feature_type	mlregressor.h	/^typedef matrix<double> feature_type;$/;"	t
+first	mlregressor.h	/^    iterator_type first, last;$/;"	m	class:combination_generator
+flip	bitarray.h	/^    inline void flip(uint64_t index) {$/;"	f	class:bitarray
+floorevenallocator	histallo.cpp	/^uint64_t floorevenallocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+ft	mlregressor.h	/^	std::vector<feature_type> ft[MaxQueries];$/;"	m	class:mlregressor
+gen_feature_vec	mlregressor.cpp	/^void mlregressor::gen_feature_vec(uint64_t chunk, int pid, int queryid) {$/;"	f	class:mlregressor
+gen_feature_vecs	mlregressor.cpp	/^void mlregressor::gen_feature_vecs(uint64_t* chunks, int queryid)$/;"	f	class:mlregressor
+get	bitarray.h	/^    inline UINT8 get(uint64_t index) {$/;"	f	class:bitarray
+get	bytecounter.h	/^  inline UINT8 get(uint64_t index) {$/;"	f	class:ByteCounter
+greedyallo	parthist.cpp	/^int64_t greedyallo(int32_t *allo, int64_t** Hist, int tau, int MM) {$/;"	f
+greedyallo	truehist.cpp	/^int64_t greedyallo(int32_t *allo, int64_t** Hist, int tau, int MM) {$/;"	f
+greedyallocator	histallo.cpp	/^uint64_t greedyallocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+greedyallocator	mihasher.cpp	/^void mihasher::greedyallocator(int32_t *allo, uint64_t * chunks, int tau) {$/;"	f	class:mihasher
+greedyallocatorreduce	histallo.cpp	/^uint64_t greedyallocatorreduce(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+group	bucket_group.h	/^    Array32 *group;$/;"	m	class:BucketGroup
+histgram	histgram.h	/^  histgram() {$/;"	f	class:histgram
+histgram	histgram.h	/^class histgram {$/;"	c
+histgramrate	mihasher.cpp	10;"	d	file:
+histsearch	parthist.cpp	/^int64_t histsearch(int64_t** Hist, int pid, int err){$/;"	f
+histsearch	truehist.cpp	/^int64_t histsearch(int64_t** Hist, int pid, int err){$/;"	f
+indexlen	dense_hashtable.h	/^    UINT32 *indexlen;$/;"	m	class:DenseHashtable
+indexstart	dense_hashtable.h	/^    UINT32 *indexstart;$/;"	m	class:DenseHashtable
+init	array32.cpp	/^void Array32::init(int size) {$/;"	f	class:Array32
+init	bitarray.h	/^    void init(uint64_t _bits) {$/;"	f	class:bitarray
+init	bytecounter.h	/^  void init(uint64_t _bytes) {$/;"	f	class:ByteCounter
+init	dense_hashtable.cpp	/^int DenseHashtable::init(int _b) {$/;"	f	class:DenseHashtable
+init	histgram.cpp	/^void histgram::init(int _bucketbits) {$/;"	f	class:histgram
+init	sparse_hashtable.cpp	/^int SparseHashtable::init(int _b) {$/;"	f	class:SparseHashtable
+insert	array32.cpp	/^void Array32::insert(UINT32 index, UINT32 data) {$/;"	f	class:Array32
+insert	bucket_group.cpp	/^void BucketGroup::insert(int subindex, UINT32 data) {$/;"	f	class:BucketGroup
+insert	dense_hashtable.cpp	/^void DenseHashtable::insert(uint64_t index, uint64_t padeddata) {$/;"	f	class:DenseHashtable
+insert	histgram.cpp	/^void histgram::insert(uint64_t index, UINT32 count) {    $/;"	f	class:histgram
+insert	sparse_hashtable.cpp	/^void SparseHashtable::insert(uint64_t index, UINT32 data) {$/;"	f	class:SparseHashtable
+insertcount	dense_hashtable.cpp	/^void DenseHashtable::insertcount(uint64_t index) {$/;"	f	class:DenseHashtable
+insertfinish	dense_hashtable.cpp	/^void DenseHashtable::insertfinish() {$/;"	f	class:DenseHashtable
+insertstart	dense_hashtable.cpp	/^void DenseHashtable::insertstart() {$/;"	f	class:DenseHashtable
+kMaxBuckets	histallo.cpp	6;"	d	file:
+kMaxBuckets	histalloapp.cpp	43;"	d	file:
+kMaxBuckets	mihasher.cpp	6;"	d	file:
+kMaxBuckets	parthist.cpp	/^const int kMaxBuckets = 64;$/;"	v
+kMaxBuckets	parthist.cpp	80;"	d	file:
+kMaxBuckets	truehist.cpp	/^const int kMaxBuckets = 64;$/;"	v
+kMaxBuckets	truehist.cpp	80;"	d	file:
+kMaxDim	hmdata.h	6;"	d
+kernel_type	mlregressor.h	/^typedef radial_basis_kernel<feature_type> kernel_type;$/;"	t
+last	mlregressor.h	/^    iterator_type first, last;$/;"	m	class:combination_generator
+length	bitarray.h	/^    UINT32 length;$/;"	m	class:bitarray
+length	bytecounter.h	/^  UINT32 length;$/;"	m	class:ByteCounter
+linscan_query	linscan.cpp	/^void linscan_query(UINT32 *counter, UINT32 *res, UINT8 *codes, UINT8 *queries, int N, UINT32 NQ, int B, int K,$/;"	f
+linscan_rangequery	linscan.cpp	/^void linscan_rangequery(UINT32 *results, UINT32 *numres, UINT8 *codes, UINT8 *queries, int N, UINT32 NQ, int B,$/;"	f
+lookup	bitops.h	/^const int lookup [] = {0,1,1,2,1,2,2,3,1,2,2,3,2,3,3,4,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,3,4,4,5,4,5,5,6,4,5,5,6,5,6,6,7,1,2,2,3,2,3,3,4,2,3,3,4,3,4,4,5,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,3,4,4,5,4,5,5,6,4,5,5,6,5,6,6,7,2,3,3,4,3,4,4,5,3,4,4,5,4,5,5,6,3,4,4,5,4,5,5,6,4,5,5,6,5,6,6,7,3,4,4,5,4,5,5,6,4,5,5,6,5,6,6,7,4,5,5,6,5,6,6,7,5,6,6,7,6,7,7,8};$/;"	v
+m	histalloapp.cpp	/^int m;$/;"	v
+m	mihasher.h	/^    int m;			\/\/ Number of chunks$/;"	m	class:mihasher
+mData	hmdata.h	/^  uint8_t *mData;$/;"	m	class:HmData
+mDataBytes	hmdata.h	/^  uint64_t mDataBytes;$/;"	m	class:HmData
+mDim	hmdata.h	/^  uint64_t mDim; \/\/ The member dimension.$/;"	m	class:HmData
+mHistgram	histgram.h	/^  uint32_t *mHistgram;$/;"	m	class:histgram
+mNumData	hmdata.h	/^  uint64_t mNumData;$/;"	m	class:HmData
+main	dataproj.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	dimshuff.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	histalloapp.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	histdump.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	histgenapp.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	mihapp.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	mihistapp.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	parthist.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	truehist.cpp	/^int main(int argc, char* argv[])$/;"	f
+make_combination_generator	mlregressor.h	/^combination_generator<iterator_type> make_combination_generator(iterator_type first, iterator_type last, unsigned r)$/;"	f
+match	bitops.h	/^inline int match(UINT8*P, UINT8*Q, int codelb) {$/;"	f
+max_error	histgram.h	/^  int64_t  max_error;$/;"	m	class:histgram
+maxrho	mihasher.h	/^    UINT32 maxrho;		\/\/ Largest distance that was searched exhaustively$/;"	m	struct:qstat
+mihasher	mihasher.cpp	/^mihasher::mihasher(int _B, int _m)$/;"	f	class:mihasher
+mihasher	mihasher.h	/^class mihasher {$/;"	c
+mlregressor	mlregressor.h	/^	mlregressor(int maxtau, char* prefixfile, int d, int M, int bit_num) {$/;"	f	class:mlregressor
+mlregressor	mlregressor.h	/^class mlregressor {$/;"	c
+mplus	mihasher.h	/^    int mplus;			\/\/ Number of chunks with b bits (have 1 bit more than others)$/;"	m	class:mihasher
+myabs	parthist.cpp	/^int64_t myabs(int64_t x) {$/;"	f
+myabs	truehist.cpp	/^int64_t myabs(int64_t x) {$/;"	f
+next_set_of_n_elements	bitops.h	/^inline uint64_t next_set_of_n_elements(uint64_t x) {$/;"	f
+numcand	mihasher.h	/^    UINT32 numcand;		\/\/ Number of hamming distance computations executed$/;"	m	struct:qstat
+numdups	mihasher.h	/^    UINT32 numdups;		\/\/ Number of candidates skipped because they were duplicates$/;"	m	struct:qstat
+numlookups	mihasher.h	/^    UINT32 numlookups;$/;"	m	struct:qstat
+numreg	mlregressor.h	/^	int numreg;$/;"	m	class:mlregressor
+numres	mihasher.h	/^    UINT32 numres;		\/\/ Total number of returned results$/;"	m	struct:qstat
+operator ()	mlregressor.h	/^    bool operator()(output_iterator result) $/;"	f	class:combination_generator
+operator =	array32.cpp	/^Array32& Array32::operator = (const Array32 &rhs) {$/;"	f	class:Array32
+popcnt	bitops.h	5;"	d
+popcntll	bitops.h	4;"	d
+populate	mihasher.cpp	/^void mihasher::populate(UINT8 *_codes, UINT32 _N, int dim1codes)$/;"	f	class:mihasher
+power	mihasher.h	/^    int power[100];		\/\/ Used within generation of binary codes at a certain Hamming distance$/;"	m	class:mihasher
+print	array32.cpp	/^void Array32::print() {$/;"	f	class:Array32
+print_code	bitops.h	/^inline void print_code(uint64_t tmp, int b) {$/;"	f
+print_usage	dataproj.cpp	/^void print_usage(){$/;"	f
+print_usage	dimshuff.cpp	/^void print_usage(){$/;"	f
+print_usage	histalloapp.cpp	/^void print_usage(){$/;"	f
+print_usage	histdump.cpp	/^void print_usage(){$/;"	f
+print_usage	histgenapp.cpp	/^void print_usage(){$/;"	f
+print_usage	mihapp.cpp	/^void print_usage(){$/;"	f
+print_usage	mihistapp.cpp	/^void print_usage(){$/;"	f
+print_usage	parthist.cpp	/^void print_usage(){$/;"	f
+print_usage	truehist.cpp	/^void print_usage(){$/;"	f
+process_mem_usage	memusage.h	/^void process_mem_usage(double *vm_usage, double *resident_set)$/;"	f
+push	array32.cpp	/^void Array32::push(UINT32 data) {$/;"	f	class:Array32
+qstat	mihasher.h	/^struct qstat {$/;"	s
+query	bucket_group.cpp	/^UINT32* BucketGroup::query(int subindex, int *size) {$/;"	f	class:BucketGroup
+query	dense_hashtable.cpp	/^uint64_t* DenseHashtable::query(uint64_t index, int *sizep) {$/;"	f	class:DenseHashtable
+query	mihasher.cpp	/^void mihasher::query(UINT32 *results, UINT32* numres, qstat *stats, UINT8 *query, uint64_t *chunks, UINT32 *res)$/;"	f	class:mihasher
+query	sparse_hashtable.cpp	/^UINT32* SparseHashtable::query(uint64_t index, int *size) {$/;"	f	class:SparseHashtable
+r	mlregressor.h	/^    unsigned r;$/;"	m	class:combination_generator
+rangequery	mihasher.cpp	/^void mihasher::rangequery(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int tau, UINT8 *origquery, UINT8 *origcodes, int origdimbytes)$/;"	f	class:mihasher
+rangequerywithallo	mihasher.cpp	/^void mihasher::rangequerywithallo(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau)$/;"	f	class:mihasher
+rangequerywithalloandext	mihasher.cpp	/^void mihasher::rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext)$/;"	f	class:mihasher
+recursiveEstimate	parthist.cpp	/^void recursiveEstimate(int i, int64_t**Hist, int error, double cost, int MM, int64_t* totalcost, int N) {$/;"	f
+recursiveEstimate	truehist.cpp	/^void recursiveEstimate(int i, int64_t**Hist, int error, double cost, int MM, int64_t* totalcost, int N) {$/;"	f
+roundrobinallocator	histallo.cpp	/^uint64_t roundrobinallocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+roundrobinreduceallocator	histallo.cpp	/^uint64_t roundrobinreduceallocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {$/;"	f
+search	histgram.cpp	/^uint32_t histgram::search(uint64_t index, int error) {$/;"	f	class:histgram
+search	mlregressor.cpp	/^int64_t mlregressor::search(int script, int error, int queryid) {$/;"	f	class:mlregressor
+set	bitarray.h	/^    inline void set(uint64_t index) {$/;"	f	class:bitarray
+setK	mihasher.cpp	/^void mihasher::setK(int _K)$/;"	f	class:mihasher
+set_array_resize_factor	array32.cpp	/^void Array32::set_array_resize_factor(double arf) {$/;"	f	class:Array32
+size	array32.cpp	/^UINT32 Array32::size () {$/;"	f	class:Array32
+size	dense_hashtable.h	/^    uint64_t size;		\/\/ Number of bins$/;"	m	class:DenseHashtable
+size	histgram.h	/^  uint64_t size;$/;"	m	class:histgram
+size	sparse_hashtable.h	/^    uint64_t size;		\/\/ Number of bins$/;"	m	class:SparseHashtable
+slots	histalloapp.cpp	/^int32_t *slots;$/;"	v
+split	bitops.h	/^inline void split (uint64_t *chunks, UINT8 *code, int m, int mplus, int b) {$/;"	f
+table	dense_hashtable.h	/^    uint64_t *table;$/;"	m	class:DenseHashtable
+table	sparse_hashtable.h	/^    BucketGroup *table;		\/\/ Bins (each bin is an Array object for duplicates of the same key)$/;"	m	class:SparseHashtable
+tablesize	dense_hashtable.h	/^    uint64_t tablesize;$/;"	m	class:DenseHashtable
+ticks	mihasher.h	/^    clock_t ticks;		\/\/ Number of clock ticks spent on each query$/;"	m	struct:qstat
+toBinary	histdump.cpp	/^const char* toBinary(uint64_t code, int size)$/;"	f
+totalcount	histgram.h	/^  uint64_t totalcount;$/;"	m	class:histgram
+transfer_bits_to_string	mlregressor.cpp	/^uint32_t transfer_bits_to_string(std::vector<uint8_t>& vec, uint32_t start, uint32_t end)$/;"	f
+transfer_to_high_dimen	mlregressor.cpp	/^void mlregressor::transfer_to_high_dimen(std::vector<uint8_t>& feature_vec, int pid, int queryid)$/;"	f	class:mlregressor
+uint64_t_1	types.h	18;"	d
+use	mlregressor.h	/^    std::vector<bool> use;$/;"	m	class:combination_generator
+valuemask	histgram.h	/^  uint64_t valuemask;$/;"	m	class:histgram
+xornum	mihasher.h	/^    UINT32 *xornum;		\/\/ Volume of a b-bit Hamming ball with radius s (for s = 0 to d)$/;"	m	class:mihasher
+~Array32	array32.cpp	/^Array32::~Array32 () {$/;"	f	class:Array32
+~BucketGroup	bucket_group.cpp	/^BucketGroup::~BucketGroup() {$/;"	f	class:BucketGroup
+~ByteCounter	bytecounter.h	/^  ~ByteCounter() {$/;"	f	class:ByteCounter
+~DenseHashtable	dense_hashtable.cpp	/^DenseHashtable::~DenseHashtable () {$/;"	f	class:DenseHashtable
+~HmData	hmdata.cpp	/^HmData::~HmData() {$/;"	f	class:HmData
+~SparseHashtable	sparse_hashtable.cpp	/^SparseHashtable::~SparseHashtable () {$/;"	f	class:SparseHashtable
+~bitarray	bitarray.h	/^    ~bitarray() {$/;"	f	class:bitarray
+~histgram	histgram.h	/^  ~histgram() {$/;"	f	class:histgram
+~mihasher	mihasher.cpp	/^mihasher::~mihasher()$/;"	f	class:mihasher
+~mlregressor	mlregressor.h	/^	~mlregressor() {$/;"	f	class:mlregressor

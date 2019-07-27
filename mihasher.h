@@ -78,7 +78,6 @@ class mihasher {
     void setK(int K);
 
     void populate(UINT8 *codes, UINT32 N, int dim1codes);
-    void populate_one(UINT8 *_codes, UINT32 _id, UINT32 _N, int dim1codes, bool init);
 
     void batchquery (UINT32 *results, UINT32 *numres, qstat *stats, UINT8 * q, UINT32 numq, int dim1queries);
 
@@ -93,7 +92,6 @@ class mihasher {
 
     void rangequerywithallo(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau);
     void rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext);
-    void rangequerywithalloandext(UINT32 *results, qstat *stats, UINT8 *query, uint64_t *chunks, int* slots, int tau, int ext, int _id);
 
     void greedyallocator(int32_t *allo, uint64_t* chunks, int tau);
 };

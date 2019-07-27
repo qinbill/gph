@@ -5,25 +5,6 @@
 
 #define kMaxBuckets 64
 
-uint32_t combine_taus[50];
-
-// Calcualte the value of selecting K from N
-int cal_combination(int n, int k)
-{
-	if(k == 0)
-	       	return 1;
-	return (n * cal_combination(n - 1, k - 1)) / k;
-}
-
-void assign_combine_taus(int N)
-{
-	int maxtau = N / 2 + 1;
-	for(int tau = 0; tau <= maxtau; tau++)
-	{
-		combine_taus[tau] = cal_combination(N, tau);
-	}
-}
-
 uint64_t greedyallocator(histgram *Hist, int m, int32_t *allo, uint64_t * chunks, int tau) {
   uint64_t nextCost[kMaxBuckets];
   uint32_t available_dists = tau;
@@ -118,7 +99,7 @@ uint64_t greedyallocatorreduce(histgram *Hist, int m, int32_t *allo, uint64_t * 
   }
 
   for (int32_t pid = 0; pid < m; pid ++) {
-    nextCost[pid] = Hist[pid].search(chunks[pid], 0); // + 0.01 * combine_taus[0];
+    nextCost[pid] = Hist[pid].search(chunks[pid], 0);
   }
   
   while (available_dists > 0) {
@@ -132,18 +113,8 @@ uint64_t greedyallocatorreduce(histgram *Hist, int m, int32_t *allo, uint64_t * 
     totalCost += nextCost[minpid];
     allo[minpid] ++;
     available_dists --;
-    nextCost[minpid] = Hist[minpid].search(chunks[minpid], allo[minpid]+1); // + 0.01 * combine_taus[allo[minpid] + 1];
+    nextCost[minpid] = Hist[minpid].search(chunks[minpid], allo[minpid]+1);
   }
-
-/*
-  // display the allo threshold
-  fprintf(stderr, "%d\t", tau);
-  for(int i = 0; i < m; i ++)
-  {
-	  fprintf(stderr, "%d\t", allo[i]);
-  }
-  fprintf(stderr, "\n");
-*/
   return totalCost;
 }
 
@@ -153,29 +124,26 @@ uint64_t Reduced_dpml_allocator(histgram *Hist, int m, int32_t *allo, uint64_t *
 {
 	int32_t pid = 0;
 	int32_t ttau = tau + 1;
-	double DistCost[kMaxBuckets][kMaxBuckets * 2];
+	int64_t DistCost[kMaxBuckets][kMaxBuckets * 2];
 	int64_t DistPath[kMaxBuckets][kMaxBuckets * 2];
-	double cumulativecost = 0.0;
+	int64_t cumulativecost = 0;
 
 	for(int32_t dst = 0; dst <= ttau; dst++) {
 		cumulativecost += mlr->search(0, dst - 1, queryid);
 		DistCost[0][dst] = cumulativecost;
-		//printf("1. %f ", cumulativecost);
 		DistPath[0][dst] = dst;	
 	}
 
-	// Process Intermediate buckets.
+	// Process Intermesiate buckets.
 	for(pid = 1; pid < m; pid++)
 	{
 		for(int32_t dst = 0; dst <= ttau; ++dst) {
 			cumulativecost = mlr->search(pid, -1, queryid);
-			//printf("2. %f ", cumulativecost);
 			DistCost[pid][dst] = DistCost[pid - 1][dst] + cumulativecost;
 			DistPath[pid][dst] = 0;
 			for(int32_t err = 1; err <= ttau && dst - err >= 0; err ++) {
 				cumulativecost += mlr->search(pid, err - 1, queryid);
-				//printf("3. %f ", cumulativecost);
-				double current_cost = DistCost[pid-1][dst-err] + cumulativecost;
+				int64_t current_cost = DistCost[pid-1][dst-err] + cumulativecost;
 				if(DistCost[pid][dst] > current_cost) {
 					DistCost[pid][dst] = current_cost;
 					DistPath[pid][dst] = err;
@@ -188,20 +156,11 @@ uint64_t Reduced_dpml_allocator(histgram *Hist, int m, int32_t *allo, uint64_t *
 	int32_t err = ttau;
 	for(pid = m - 1; pid >= 0; --pid) {
 		allo[pid] = DistPath[pid][err] - 1;
-       		//fprintf(stderr, "allo: %d \n", allo[pid]);
 		err = err - DistPath[pid][err];
 	}
-/*
-  for (err = 0; err <= ttau; err ++) {
-    fprintf(stderr, "\nRederr %d-> ", err);
-    for (pid = 0; pid < m; pid ++) {
-       fprintf(stderr, "(%lf|%d) ", DistCost[pid][err], DistPath[pid][err]);
-     }
-     fprintf(stderr, "\n");
-   } 
-  
-	return (uint64_t)DistCost[m-1][ttau];
-*/
+
+	return DistCost[m-1][ttau];
+
 
 /*
 	// Malloc a DP table
@@ -336,33 +295,13 @@ uint64_t Reduced_DP_optimal_allocator(histgram *Hist, int m, int32_t *allo, uint
     err = err - DistPath[pid][err];
   }
 
-/*
-  // display histogram
-  fprintf(stderr, "histogram Info: \n");
-  for(pid = 0; pid < m; ++ pid) { 
-	 fprintf(stderr, "Partition %d-> ", pid);
-	 for(int k = 0; k <= tau; k++) {
-		fprintf(stderr, "(%d, %d)\t",Hist[pid].search(chunks[pid], k), k);
-	 }
-	 fprintf(stderr, "\n");
-  }  
-
-  // display the allo threshold
-  fprintf(stderr, "threshold: %d\t", tau);
-  for(int i = 0; i < m; i ++)
-  {
-	  fprintf(stderr, "%d\t", allo[i]);
-  }
-  fprintf(stderr, "\n");
-
-   for (err = 0; err <= ttau; err ++) {
-     fprintf(stderr, "\nRederr %d-> ", err);
-     for (pid = 0; pid < m; pid ++) {
-       fprintf(stderr, "(%lld|%d) ", DistCost[pid][err], DistPath[pid][err]);
-     }
-     fprintf(stderr, "\n");
-   }
-  */
+  // for (err = 0; err <= ttau; err ++) {
+  //   fprintf(stderr, "\nRederr %d-> ", err);
+  //   for (pid = 0; pid < m; pid ++) {
+  //     fprintf(stderr, "(%lld|%d) ", DistCost[pid][err], DistPath[pid][err]);
+  //   }
+  //   fprintf(stderr, "\n");
+  // }  
   return DistCost[m-1][ttau];  
 }
 

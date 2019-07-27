@@ -85,15 +85,10 @@ void mlregressor::gen_feature_vecs(uint64_t* chunks, int queryid)
 
 
 // Search
-double mlregressor::search(int script, int error, int queryid) {
+int64_t mlregressor::search(int script, int error, int queryid) {
 	if(error < 0)
 		return 0;
-        if(error > this->d) error = this->d;
-	if(temp[queryid][script][error] < 0) {
-		temp[queryid][script][error] =  this->df[script][error](this->ft[queryid][script]);
-	}
-	return exp(temp[queryid][script][error]); 
-	//return this->df[script][error](this->ft[queryid][script]);
+	return this->df[script][error](this->ft[queryid][script]);
 }
 
 
@@ -107,11 +102,3 @@ int mlregressor::cal_combination(int n, int k)
 }
 
 
-// Just for test
-void mlregressor::fillallpredicts(int NQ, int M, int maxTau)
-{
-	for(int i = 0; i < NQ; i++)
-	  for(int j = 0; j < M; j++)
-	   for(int z = 0; z < maxTau; z++)
-		this->temp[i][j][z] = this->df[j][z](this->ft[i][j]);
-}
